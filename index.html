@@ -64,18 +64,36 @@
   .group-block{margin-bottom:26px}
   .group-title{font-size:1.15rem;font-weight:800;margin-bottom:12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
   .group-title .cnt{font-size:.82rem;color:var(--ink2);font-weight:600}
-  .sym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:12px}
-  .sym{position:relative;border-radius:16px;border:2px solid;background:var(--card);padding:14px 8px 10px;text-align:center;cursor:pointer;transition:transform .12s, box-shadow .12s;user-select:none}
+  .sym-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px}
+  .sym{position:relative;border-radius:20px;border:2px solid;background:var(--card);padding:16px 12px 14px;text-align:center;cursor:pointer;transition:transform .12s, box-shadow .12s;user-select:none}
   .sym:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(15,23,42,.10)}
   .sym:active{transform:scale(.96)}
-  .sym .glyph{font-size:3.1rem;line-height:1.15;font-weight:800}
-  .sym .emo{position:absolute;top:8px;right:10px;font-size:1.15rem;opacity:.9}
-  .sym .py{font-size:1.02rem;font-weight:800;margin-top:2px}
-  .sym .ph{font-size:.8rem;color:var(--ink2);margin-top:6px;line-height:1.35}
-  .sym .en{font-size:.68rem;color:#94a3b8;margin-top:2px}
-  .sym .songbtn{position:absolute;top:7px;left:8px;width:26px;height:26px;border-radius:50%;border:none;background:#f1f5f9;color:var(--ink2);cursor:pointer;font-size:.8rem;line-height:1}
-  .sym .songbtn:hover{background:var(--g4-bg);color:var(--g4)}
+  .sym .emo{display:block;font-size:2.7rem;line-height:1.25;filter:drop-shadow(0 3px 4px rgba(15,23,42,.12))}
+  .sym .glyph{font-size:3.9rem;line-height:1.15;font-weight:800}
+  .sym .py{font-size:1.18rem;font-weight:800;margin-top:2px}
+  .sym .ph{font-size:1.02rem;color:var(--ink2);margin-top:6px;line-height:1.35}
+  .sym .en{font-size:.76rem;color:#94a3b8;margin-top:2px}
+  .sym .zoom{position:absolute;top:10px;right:12px;font-size:.72rem;color:#94a3b8;background:#f1f5f9;border-radius:999px;padding:2px 8px;font-weight:700}
   .sym.playing{box-shadow:0 0 0 3px #99f6e4;transform:translateY(-2px)}
+  /* ---------- BIG CARD MODAL ---------- */
+  .overlay{position:fixed;inset:0;z-index:200;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px}
+  .overlay.open{display:flex}
+  .bigcard{background:var(--card);border-radius:28px;border:3px solid var(--g2-bd);max-width:460px;width:100%;text-align:center;padding:34px 26px 28px;position:relative;box-shadow:0 24px 60px rgba(15,23,42,.35);animation:pop .25s ease;max-height:92vh;overflow-y:auto}
+  @keyframes pop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+  .bigcard .close{position:absolute;top:12px;right:14px;width:40px;height:40px;border-radius:50%;border:none;background:#f1f5f9;font-size:1.15rem;cursor:pointer;color:var(--ink2)}
+  .bigcard .close:hover{background:#e2e8f0}
+  .bigcard .bemo{font-size:5.8rem;line-height:1.15;filter:drop-shadow(0 6px 10px rgba(15,23,42,.15))}
+  .bigcard .bglyph{font-size:7.2rem;font-weight:800;line-height:1.05}
+  .bigcard .bpy{font-size:1.7rem;font-weight:800;margin-top:2px}
+  .bigcard .bph{font-size:1.55rem;font-weight:800;margin-top:12px}
+  .bigcard .ben{font-size:1.02rem;color:#94a3b8;margin-top:2px}
+  .bigcard .bbtns{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+  .bbtn{border:none;border-radius:999px;padding:13px 24px;font-family:inherit;font-size:1.08rem;font-weight:800;cursor:pointer;color:#fff;transition:.15s}
+  .bbtn.snd{background:var(--g2)} .bbtn.snd:hover{background:#0f766e}
+  .bbtn.sng{background:var(--g4)} .bbtn.sng:hover{background:#b45309}
+  .bigcard.g0{border-color:var(--g1-bd)} .bigcard.g0 .bglyph{color:var(--g1)} .bigcard.g0 .bpy{color:var(--g1)}
+  .bigcard.g1{border-color:var(--g2-bd)} .bigcard.g1 .bglyph{color:var(--g2)} .bigcard.g1 .bpy{color:var(--g2)}
+  .bigcard.g2{border-color:var(--g3-bd)} .bigcard.g2 .bglyph{color:var(--g3)} .bigcard.g2 .bpy{color:var(--g3)}
   .g0 .glyph{color:var(--g1)} .g0{border-color:var(--g1-bd);background:linear-gradient(180deg,#fff 70%,var(--g1-bg))}
   .g0 .py{color:var(--g1)}
   .g1 .glyph{color:var(--g2)} .g1{border-color:var(--g2-bd);background:linear-gradient(180deg,#fff 70%,var(--g2-bg))}
@@ -84,12 +102,12 @@
   .g2 .py{color:var(--g3)}
   .hint-line{font-size:.9rem;color:var(--ink2);background:#f8fafc;border-radius:12px;padding:10px 14px;margin-bottom:16px;border:1.5px dashed #cbd5e1}
   /* ---------- TONES ---------- */
-  .tone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-  .tone{background:linear-gradient(180deg,#fff 65%,var(--g4-bg));border:2px solid var(--g4-bd);border-radius:16px;padding:16px 10px;text-align:center;cursor:pointer;transition:.15s;user-select:none}
+  .tone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(172px,1fr));gap:14px}
+  .tone{background:linear-gradient(180deg,#fff 65%,var(--g4-bg));border:2px solid var(--g4-bd);border-radius:20px;padding:20px 12px;text-align:center;cursor:pointer;transition:.15s;user-select:none}
   .tone:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(15,23,42,.10)}
-  .tone .mark{font-size:2.8rem;font-weight:800;color:var(--g4);line-height:1.1}
-  .tone .nm{font-size:1.05rem;font-weight:800;margin-top:4px}
-  .tone .ex{margin-top:8px;font-size:1.5rem;font-weight:800}
+  .tone .mark{font-size:3.3rem;font-weight:800;color:var(--g4);line-height:1.1}
+  .tone .nm{font-size:1.15rem;font-weight:800;margin-top:4px}
+  .tone .ex{margin-top:8px;font-size:1.8rem;font-weight:800}
   .tone .ex b{color:var(--g4);font-size:1rem;font-weight:700;margin-left:6px}
   .tone .en{font-size:.7rem;color:#94a3b8;margin-top:2px}
   .tone.playing{box-shadow:0 0 0 3px #fde68a;transform:translateY(-2px)}
@@ -139,8 +157,11 @@
   /* ---------- FOOTER ---------- */
   footer{max-width:1100px;margin:44px auto 26px;padding:0 20px;color:#94a3b8;font-size:.85rem;text-align:center}
   @media(max-width:640px){
-    .sym-grid{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}
-    .sym .glyph{font-size:2.5rem}
+    .sym-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+    .sym .glyph{font-size:3.1rem}
+    .sym .emo{font-size:2.2rem}
+    .bigcard .bglyph{font-size:5.6rem}
+    .bigcard .bemo{font-size:4.6rem}
     .lyrics{max-height:320px}
   }
 </style>
@@ -187,7 +208,7 @@
 <!-- ============ 符號發音 ============ -->
 <section id="symbols">
   <div class="sec-head"><h2>符號發音</h2><span class="en">Symbols &amp; Sounds</span></div>
-  <p class="sec-desc">點一下卡片聽發音（採用<b>教育部《國語注音符號手冊》官方真人音檔</b>），點左上角 🎵 聽兒歌口訣。每個符號都像一幅小圖畫——書包、葡萄、門框……</p>
+  <p class="sec-desc">點一下卡片會<b>放大成大詞卡</b>並自動朗讀口訣（發音採用<b>教育部《國語注音符號手冊》官方真人音檔</b>）。每個符號都像一幅小圖畫——書包、葡萄、門框……</p>
   <div class="hint-line">💡 小提示：卡片上的圖案就是符號的形狀聯想，例如「ㄇ」長得像<b>門框</b>、「ㄑ」像一隻<b>企鵝</b>。記住圖案，就記住符號！</div>
   <div id="groups"></div>
 </section>
@@ -231,6 +252,11 @@
 </section>
 
 <footer>注音符號學習網站 · ㄅㄆㄇ Bopomofo Learning Site<br>符號發音音檔來源：教育部《國語注音符號手冊》（<a href="https://language.moe.gov.tw/001/Upload/files/site_content/M0001/juyin/index.html" target="_blank" rel="noopener" style="color:#64748b">政府資料開放授權條款第1版</a>）· 兒歌口訣與聲調說明語音為神經網絡合成（zh-TW）</footer>
+
+<!-- 大詞卡彈窗 -->
+<div class="overlay" id="overlay">
+  <div class="bigcard" id="bigcard" role="dialog" aria-modal="true"></div>
+</div>
 
 <script>
 /* =============== DATA =============== */
@@ -339,25 +365,49 @@ GROUPS.forEach((g,gi) => {
   const list = SYMBOLS.filter(d=>d.g===gi);
   const block = document.createElement('div');
   block.className = 'group-block';
-  block.innerHTML = '<div class="group-title">'+g.name+'<span class="cnt">'+list.length+' 個符號，點擊發音</span></div>';
+  block.innerHTML = '<div class="group-title">'+g.name+'<span class="cnt">'+list.length+' 個符號，點擊放大與發音</span></div>';
   const grid = document.createElement('div');
   grid.className = 'sym-grid';
   list.forEach(d => {
     const c = document.createElement('div');
     c.className = 'sym ' + g.cls;
-    c.innerHTML = '<button class="songbtn" title="聽兒歌口訣">🎵</button><span class="emo">'+d.emo+'</span>'
+    c.innerHTML = '<span class="zoom">🔍</span><span class="emo">'+d.emo+'</span>'
       + '<div class="glyph">'+d.s+'</div><div class="py">'+d.py+'</div>'
       + '<div class="ph">'+d.ph+'</div><div class="en">'+d.en+'</div>';
-    c.addEventListener('click', () => playAudio(symAudio(d.s), c));
-    c.querySelector('.songbtn').addEventListener('click', e => {
-      e.stopPropagation();
-      playAudio(songAudio(d.s), c);
-    });
+    c.addEventListener('click', () => openModal(d));
     grid.appendChild(c);
   });
   block.appendChild(grid);
   groupsBox.appendChild(block);
 });
+
+/* =============== BIG CARD MODAL =============== */
+const overlay = document.getElementById('overlay');
+const bigcard = document.getElementById('bigcard');
+function openModal(d){
+  bigcard.className = 'bigcard g' + d.g;
+  bigcard.innerHTML = '<button class="close" title="關閉">✕</button>'
+    + '<div class="bemo">'+d.emo+'</div>'
+    + '<div class="bglyph">'+d.s+'</div>'
+    + '<div class="bpy">'+d.py+'</div>'
+    + '<div class="bph">'+d.ph+'</div>'
+    + '<div class="ben">'+d.en+'</div>'
+    + '<div class="bbtns">'
+    + '<button class="bbtn snd" id="m-snd">🔊 符號發音</button>'
+    + '<button class="bbtn sng" id="m-sng">🎵 兒歌口訣</button></div>';
+  overlay.classList.add('open');
+  playAudio(songAudio(d.s)); // 自動朗讀口訣，如「帶刺的葉子，ㄝㄝㄝ」
+  bigcard.querySelector('.close').addEventListener('click', closeModal);
+  document.getElementById('m-snd').addEventListener('click', () => playAudio(symAudio(d.s)));
+  document.getElementById('m-sng').addEventListener('click', () => playAudio(songAudio(d.s)));
+}
+function closeModal(){
+  overlay.classList.remove('open');
+  if (curAudio){ try{curAudio.pause();}catch(e){} curAudio = null; }
+  if (curEl){ curEl.classList.remove('playing'); curEl = null; }
+}
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
 
 /* =============== TONES SECTION =============== */
 const toneGrid = document.getElementById('tone-grid');
